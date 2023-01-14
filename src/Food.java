@@ -1,4 +1,4 @@
-public class Food extends Consumables{
+public class Food extends Consumables {
 
     Food() {
         this.type = ItemsType.FOOD;
