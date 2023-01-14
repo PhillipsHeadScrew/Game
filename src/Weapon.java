@@ -1,5 +1,4 @@
 public class Weapon extends Equipment {
-
     int power;
 
     Weapon(int power){
