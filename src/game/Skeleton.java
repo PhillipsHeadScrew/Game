@@ -1,3 +1,5 @@
+package game;
+
 public class Skeleton extends Entity {
     Skeleton (){
         this.health = 5;
