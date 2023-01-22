@@ -1,3 +1,8 @@
+package game;
+
+import game.Item.Equipment.Equipment;
+import game.Item.Item;
+
 import java.util.ArrayList;
 import java.util.List;
 

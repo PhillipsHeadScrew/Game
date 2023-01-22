@@ -1,3 +1,5 @@
+package game.Item;
+
 public enum ItemsType {
     FOOD,
     POTIONS,
