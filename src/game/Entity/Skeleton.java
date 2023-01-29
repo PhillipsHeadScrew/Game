@@ -1,4 +1,6 @@
-package game;
+package game.Entity;
+
+import game.Entity.Entity;
 
 public class Skeleton extends Entity {
     Skeleton (){

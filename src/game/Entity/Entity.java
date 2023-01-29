@@ -1,4 +1,4 @@
-package game;
+package game.Entity;
 
 import game.Item.Equipment.Equipment;
 import game.Item.Item;

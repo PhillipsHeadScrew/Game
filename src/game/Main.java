@@ -33,6 +33,7 @@ public class Main {
                     previousLocation = location;
                     switch (playerInput) {
                         case "menu" -> location = "menu";
+                        case "close game" -> running = false;
                     }
                 }
                 case "menu" -> {
