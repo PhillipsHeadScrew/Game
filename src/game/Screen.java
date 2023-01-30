@@ -1,7 +1,6 @@
 package game;
 
 public class Screen {
-
     public String[][] createScreen() {
         String space = "                                      ";//1
         String lines = "     ––––––––––        ––––––––––     ";//3
