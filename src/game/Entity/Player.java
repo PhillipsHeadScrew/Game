@@ -1,10 +1,13 @@
 package game.Entity;
 
 import game.Entity.Entity;
+import game.Item.Empty;
 
 public class Player extends Entity {
 
-    Player() {
+    public Player() {
+        Empty emptyslot = new Empty();
+
         this.health = 5;
         this.maxHealth = 5;
         this.attack = 4;
@@ -13,5 +16,6 @@ public class Player extends Entity {
         this.level = 0;
         this.mana = 5;
         this.maxMana = 5;
+        this.itemList.set(0, emptyslot);
     }
 }
