@@ -6,7 +6,7 @@ import game.Item.Empty;
 public class Player extends Entity {
 
     public Player() {
-        Empty emptyslot = new Empty();
+        Empty emptySlot = new Empty();
 
         this.health = 5;
         this.maxHealth = 5;
@@ -16,6 +16,7 @@ public class Player extends Entity {
         this.level = 0;
         this.mana = 5;
         this.maxMana = 5;
-        this.itemList.set(0, emptyslot);
+        this.itemList.add(emptySlot);
+        System.out.println(itemList.get(0));
     }
 }

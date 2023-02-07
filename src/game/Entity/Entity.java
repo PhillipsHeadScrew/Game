@@ -8,16 +8,16 @@ import java.util.List;
 
 public class Entity {
 
-    int health;
-    int maxHealth;
-    int level;
-    int experience;
-    int defence;
-    int attack;
-    int mana;
-    int maxMana;
-    List<Item> itemList = new ArrayList<>();
-    List<Equipment> equippedList = new ArrayList<>();
+    public int health;
+    public int maxHealth;
+    public int level;
+    public int experience;
+    public int defence;
+    public int attack;
+    public int mana;
+    public int maxMana;
+    public List<Item> itemList = new ArrayList<>();
+    public List<Equipment> equippedList = new ArrayList<>();
 
     enum status {
         BURNED,
@@ -35,5 +35,4 @@ public class Entity {
         DISABLE_ATTACK,
         UNCURSED
     }
-
 }

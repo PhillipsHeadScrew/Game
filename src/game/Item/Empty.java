@@ -1,7 +1,13 @@
 package game.Item;
 
 public class Empty extends Item {
+
     public Empty() {
-        String name = "";
+        this.name = "   ";
     }
+
+    public String getName() {
+        return name;
+    }
+
 }

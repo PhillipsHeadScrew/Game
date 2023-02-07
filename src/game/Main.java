@@ -1,6 +1,11 @@
 package game;
 
+import game.Entity.Entity;
+import game.Entity.Player;
+import game.Item.Empty;
+
 import java.util.Scanner;
+
 
 public class Main {
 
@@ -11,6 +16,8 @@ public class Main {
         int j = 0;
         String previousLocation = "";
         Screen screen = new Screen();
+        Player player = new Player();
+
 
         String[][] game_screen = screen.createScreen();
 
@@ -34,6 +41,9 @@ public class Main {
                     switch (playerInput) {
                         case "menu" -> location = "menu";
                         case "close game" -> running = false;
+                        case "kay" -> {
+                            System.out.println(player.itemList.get(0));
+                        }
                     }
                 }
                 case "menu" -> {
