@@ -11,7 +11,7 @@ public class Screen {
 
         Player player = new Player();
 
-        String x = "";
+        String x;
         String[] itemLengthSpace = {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "};
 
         for (int i = 0; i < 12; i++ ) {
