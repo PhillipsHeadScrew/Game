@@ -1,6 +1,5 @@
 package game.Entity;
 
-import game.Entity.Entity;
 import game.Item.Empty;
 
 public class Player extends Entity {
@@ -16,7 +15,9 @@ public class Player extends Entity {
         this.level = 0;
         this.mana = 5;
         this.maxMana = 5;
-        this.itemList.add(emptySlot);
-        System.out.println(itemList.get(0));
+        for (int i = 0; i < 12; i++) {
+            this.itemList.add(emptySlot);
+        }
+
     }
 }

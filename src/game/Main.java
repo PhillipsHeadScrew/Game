@@ -1,8 +1,6 @@
 package game;
 
-import game.Entity.Entity;
 import game.Entity.Player;
-import game.Item.Empty;
 
 import java.util.Scanner;
 
@@ -25,6 +23,7 @@ public class Main {
             switch (location) {
                 case "no_mans_land" -> j = 0;
                 case "menu" -> j = 1;
+                case "items" -> j = 2;
             }
             System.out.println(equal);
             for (int i = 0; i < 18; i++) {
@@ -41,14 +40,13 @@ public class Main {
                     switch (playerInput) {
                         case "menu" -> location = "menu";
                         case "close game" -> running = false;
-                        case "kay" -> {
-                            System.out.println(player.itemList.get(0));
-                        }
+                        case "kay" -> System.out.println(player.itemList.get(0).name);
                     }
                 }
                 case "menu" -> {
                     switch (playerInput) {
                         case "back" -> location = previousLocation;
+                        case "pocket", "items", "item" -> location = "items";
                     }
                 }
             }
