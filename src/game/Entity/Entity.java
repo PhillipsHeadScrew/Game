@@ -12,6 +12,8 @@ public class Entity {
     public int maxHealth;
     public int level;
     public int experience;
+
+    public int maxExperience;
     public int defence;
     public int attack;
     public int mana;

@@ -10,21 +10,23 @@ public class Main {
     public static void main(String[] args) {
         boolean running = true;
         String equal = "==========================================";
-        String location = "no_mans_land";
-        int j = 0;
-        String previousLocation = "";
+        String location = "stats";
+        int j = 3;
+        String previousLocation = "no_mans_land";
         Screen screen = new Screen();
         Player player = new Player();
 
-
-        String[][] game_screen = screen.createScreen();
 
         while (running) {
             switch (location) {
                 case "no_mans_land" -> j = 0;
                 case "menu" -> j = 1;
                 case "items" -> j = 2;
+                case "stats" -> j = 3;
             }
+
+            String[][] game_screen = screen.createScreen(j, player);
+
             System.out.println(equal);
             for (int i = 0; i < 18; i++) {
                 System.out.println(" |" + game_screen[j][i] + "|");
@@ -47,11 +49,20 @@ public class Main {
                     switch (playerInput) {
                         case "back" -> location = previousLocation;
                         case "pocket", "items", "item" -> location = "items";
+                        case "stats" -> location = "stats";
+                    }
+                }
+                case "stats" -> {
+                    switch (playerInput) {
+                        case "back", "leave" -> location = "menu";
+                    }
+                }
+                case "items", "pocket" -> {
+                    switch (playerInput) {
+                        case "back", "leave" -> location = "menu";
                     }
                 }
             }
-
-
         }
     }
 }
