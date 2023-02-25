@@ -1,9 +1,10 @@
 package game;
 
+import game.Entity.Entity;
 import game.Entity.Player;
 
 public class Screen {
-    public String[][] createScreen(int j, Player p) {         // p = player
+    public String[][] createScreen(int j, Player p, Entity.status playerStatus, Entity.curse playerCurse) {// p = player
         String space = "                                      ";//1
         String lines = "     ––––––––––        ––––––––––     ";//3
         String line = "     ––––––––––––––––––––––––––––     "; //4
@@ -18,14 +19,14 @@ public class Screen {
                 (String.valueOf(p.mana) + 1 + p.maxMana), String.valueOf(p.level)};
         // 0 health, 1 attack, 2 defence, 3 exp, 4 mana, 5 level
 
-        switch (j) {
+        switch (j) { // creates the space of items that the player holds
             case 2 -> {
                 for (int i = 0; i < 12; i++ ) {
                     x = stringSpace[i].repeat(17 - p.itemList.get(i).name.length());
                     stringSpace[i] = x;
                 }
             }
-            case 3 -> {
+            case 3 -> { // creates the space between stats
                 for (int i = 0; i < 6; i++ ) {
                     x = stringSpace[i].repeat(7 - statList[i].length());
                     stringSpace[i] = x;
@@ -33,6 +34,26 @@ public class Screen {
             }
         }
 
+        // this is to show the curse and status effect in the stats menu
+
+        String writtenPlayerStatus = "error           ";
+        String writtenPlayerCurse = "error           ";
+
+        switch (playerStatus) {
+            case NORMAL -> writtenPlayerStatus = "Normal   ";
+            case BURNED -> writtenPlayerStatus = "Burned   ";
+            case STUNNED -> writtenPlayerStatus = "Stunned  ";
+            case PARALYSED -> writtenPlayerStatus = "Paralyzed";
+        }
+        switch (playerCurse) {
+            case UNCURSED -> writtenPlayerCurse = "Uncursed        ";
+            case DISABLE_MAGIC -> writtenPlayerCurse = "Disabled Magic  ";
+            case DISABLE_ATTACK -> writtenPlayerCurse = "Disabled Attack ";
+            case WEAKENING_MANA -> writtenPlayerCurse = "Weakened Mana   ";
+            case WEAKENING_ATTACK -> writtenPlayerCurse = "Weakened Attack ";
+            case WEAKENING_HEALTH -> writtenPlayerCurse = "Weakened Health ";
+            case WEAKENING_DEFENCE -> writtenPlayerCurse = "Weakened Defence";
+        }
 
         return new String[][]{
                 {space, space, space, space, space, space, space, space, space, space, space, space, space, space,
@@ -56,8 +77,15 @@ public class Screen {
                         " Exp      " + stringSpace[3], space, " " + p.health + "/" + p.maxHealth + " Health    " +
                         stringSpace[0] + p.mana + "/" + p.maxMana + " ManaPoints " + stringSpace[4], space, " " +
                         p.attack + " Attack    " + stringSpace[1] + p.defence + " Defence    " + stringSpace[2], space,
-                        space, space, space, space, space, space, space, line, back, line, space}
+                        " Status effect: " + writtenPlayerStatus + "             ", space, " Curse: " +
+                        writtenPlayerCurse + "              ", space, space, space, space, line, back, line, space},
                 // 3 stats
+                {space, space, space, space, space, space, space, space, space, space, space, space, space, space,
+                        space, space, space, space},
+                // 4 notebook
+                {space, space, space, space, space, space, space, space, space, space, space, space, space, space,
+                        space, space, space, space},
+                // 5 spells
         };
     }
 }

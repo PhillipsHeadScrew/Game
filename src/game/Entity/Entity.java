@@ -21,14 +21,14 @@ public class Entity {
     public List<Item> itemList = new ArrayList<>();
     public List<Equipment> equippedList = new ArrayList<>();
 
-    enum status {
+    public enum status {
         BURNED,
         STUNNED,
         PARALYSED,
         NORMAL
 
     }
-    enum curse {
+    public enum curse {
         WEAKENING_ATTACK,
         WEAKENING_MANA,
         WEAKENING_DEFENCE,

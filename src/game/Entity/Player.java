@@ -5,6 +5,9 @@ import game.Item.Empty;
 
 public class Player extends Entity {
 
+    public status playerStatus = status.NORMAL;
+    public curse playerCurse = curse.UNCURSED;
+
     public Player() {
         Empty emptySlot = new Empty();
         CannedBeans cannedBeans = new CannedBeans();
@@ -22,6 +25,5 @@ public class Player extends Entity {
             this.itemList.add(emptySlot);
         }
         this.itemList.set(0, cannedBeans);
-
     }
 }
