@@ -23,7 +23,7 @@ public class Main {
         String itemUse = "";
 
 
-        while (running) {
+        while (running) { // turns location into an int
             switch (location) {
                 case "no_mans_land" -> j = 0;
                 case "menu" -> j = 1;
@@ -35,26 +35,25 @@ public class Main {
             }
 
             String[][] game_screen = screen.createScreen(j, player, player.playerStatus, player.playerCurse);
-
-            System.out.println(equal);
-            for (int i = 0; i < 18; i++) {
+            // makes the game screen object
+            System.out.println(equal); // printing the top of the screen
+            for (int i = 0; i < 18; i++) { // prints the content of the screen
                 System.out.println(" |" + game_screen[j][i] + "|");
             }
-            System.out.println(equal);
+            System.out.println(equal); // printing bottom of screen
 
-            Scanner in = new Scanner(System.in);
-            String playerInput = in.next().toLowerCase() + in.nextLine();
+            Scanner in = new Scanner(System.in); // makes a scanner
+            String playerInput = in.next().toLowerCase() + in.nextLine(); // uses scanner
 
-            switch (location) {
-                case "no_mans_land" -> {
-                    previousLocation = location;
-                    switch (playerInput) {
-                        case "menu" -> location = "menu";
-                        case "close game" -> running = false;
-                        case "kay" -> System.out.println(player.itemList.get(0).name);
-                        case "get" -> {
+            switch (location) { // changes what the player can do based on location
+                case "no_mans_land" -> { // no_mans_land is a testing area
+                    previousLocation = location; // makes a copy of where the player was as not to get lost
+                    switch (playerInput) { // reacts to what the player does
+                        case "menu" -> location = "menu"; // takes you to the menu
+                        case "close game" -> running = false; // turns the game off
+                        case "get" -> { // lets the player acquire items through admin commands
                             playerInput = in.next().toLowerCase() + in.nextLine();
-                            switch (playerInput) {
+                            switch (playerInput) { // player gets minor healing spell or medium healing spell
                                 case "minor_healing_spell" -> {
                                     MinorHealing minorHealing = new MinorHealing();
                                     player.spellList.set(0, minorHealing);
@@ -69,7 +68,7 @@ public class Main {
                         }
                     }
                 }
-                case "menu" -> {
+                case "menu" -> { // player can enter into submenus or exits
                     switch (playerInput) {
                         case "back" -> location = previousLocation;
                         case "pocket", "items", "item" -> location = "items";
@@ -78,12 +77,12 @@ public class Main {
                         case "spells" -> location = "spells";
                     }
                 }
-                case "stats" -> {
+                case "stats" -> { // player can look at stats and leave
                     switch (playerInput) {
                         case "back", "leave" -> location = "menu";
                     }
                 }
-                case "items" -> {
+                case "items" -> { // player can look at the items they have and use one if they want
                     switch (playerInput) {
                         case "item", "items", "pocket" -> {}
                         default -> {
@@ -131,17 +130,17 @@ public class Main {
                         }
                     }
                 }
-                case "notebook" -> {
+                case "notebook" -> { // the player can in the future get hints from this place
                     switch (playerInput) {
                         case "back", "see ya" -> location = "menu";
                     }
                 }
-                case "spells" -> {
+                case "spells" -> { // player can use some spells in the future
                     switch (playerInput) {
                         case "back", "bye" -> location = "menu";
                     }
                 }
-                case "use menu" -> {
+                case "use menu" -> { // the player has the option to use the item they chose or go back
                     switch (playerInput) {
                         case "use" -> {
                             switch (itemUse) {
