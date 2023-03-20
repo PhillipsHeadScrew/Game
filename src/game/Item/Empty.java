@@ -3,7 +3,7 @@ package game.Item;
 public class Empty extends Item {
 
     public Empty() {
-        this.name = "an empty slot";
+        this.name = "             ";
     }
 
     public String getName() {

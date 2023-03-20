@@ -1,9 +1,11 @@
 package game.Item;
 
 public abstract class Item {
-    protected ItemsType type;
-    protected ItemsCategory category;
+    public ItemsType type;
+    public ItemsCategory category;
 
     public String name = "itemname";
+
+    
 
 }

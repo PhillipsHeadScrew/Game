@@ -81,11 +81,17 @@ public class Screen {
                         writtenPlayerCurse + "              ", space, space, space, space, line, back, line, space},
                 // 3 stats
                 {space, space, space, space, space, space, space, space, space, space, space, space, space, space,
-                        space, space, space, space},
+                        line, back, line, space},
                 // 4 notebook
-                {space, space, space, space, space, space, space, space, space, space, space, space, space, space,
-                        space, space, space, space},
+                {space, p.spellList.get(0).name + p.spellList.get(1).name, space, p.spellList.get(2).name +
+                        p.spellList.get(3).name, space, p.spellList.get(4).name + p.spellList.get(5).name, space,
+                        p.spellList.get(6).name + p.spellList.get(7).name, space, p.spellList.get(8).name +
+                        p.spellList.get(9).name, space, p.spellList.get(10).name + p.spellList.get(11).name,
+                        space, space, line, back, line, space},
                 // 5 spells
+                {space, space, space, space, space, space, space, space, space, space, space, space, line,
+                        "     |           Use            |     ", line, back, line, space},
+                // 6 use menu
         };
     }
 }
