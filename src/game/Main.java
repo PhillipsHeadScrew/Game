@@ -5,6 +5,7 @@ import game.Item.Consumables.Food.Food;
 import game.Item.Item;
 import game.Spells.HealingSpells.MediumHealing;
 import game.Spells.HealingSpells.MinorHealing;
+import game.Item.Empty;
 
 import java.util.Scanner;
 
@@ -19,6 +20,7 @@ public class Main {
         String previousLocation = "no_mans_land";
         Screen screen = new Screen();
         Player player = new Player();
+        Empty emptySlot = new Empty();
         int showItem = 0;
         String itemUse = "";
 
@@ -90,7 +92,7 @@ public class Main {
 
                                 Item item = player.itemList.get(i);
 
-                                if (item.name.equals(playerInput)) {
+                                if (item.useName.equals(playerInput)) {
                                     location = "use menu";
                                     showItem = i;
                                     switch (item.category) {
@@ -143,15 +145,19 @@ public class Main {
                 case "use menu" -> { // the player has the option to use the item they chose or go back
                     switch (playerInput) {
                         case "use" -> {
+                            System.out.println("h");
                             switch (itemUse) {
                                 case "food" -> {
+                                    System.out.println("ha");
                                     Food itemBeingUsed = (Food) player.itemList.get(showItem);
                                     player.health = itemBeingUsed.EatingFood(itemBeingUsed.restorativePowers,
                                             player.maxHealth, player.health);
                                 }
                             }
+                            player.itemList.set(showItem, emptySlot);
+                            location = "items";
                         }
-                        case "back" -> location = "item";
+                        case "back" -> location = "items";
                     }
                 }
             }

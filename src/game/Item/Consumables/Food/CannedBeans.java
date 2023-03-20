@@ -4,5 +4,6 @@ public class CannedBeans extends Food {
     public CannedBeans() {
         this.restorativePowers = 20;
         this.name = "CannedBeans  ";
+        this.useName = "cannedbeans";
     }
 }
