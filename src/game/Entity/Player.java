@@ -23,8 +23,8 @@ public class Player extends Entity {
         this.experience = 0;
         this.maxExperience = 10;
         this.level = 1;
-        this.mana = 5;
-        this.maxMana = 5;
+        this.mana = 20;
+        this.maxMana = 20;
         this.blankStat = 0;
         for (int i = 0; i < 12; i++) {
             this.itemList.add(emptySlot);

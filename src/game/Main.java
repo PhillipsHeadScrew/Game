@@ -145,10 +145,10 @@ public class Main {
                 case "use menu" -> { // the player has the option to use the item they chose or go back
                     switch (playerInput) {
                         case "use" -> {
-                            System.out.println("h");
+                            System.out.println("food test 1");
                             switch (itemUse) {
                                 case "food" -> {
-                                    System.out.println("ha");
+                                    System.out.println("food test 2");
                                     Food itemBeingUsed = (Food) player.itemList.get(showItem);
                                     player.health = itemBeingUsed.EatingFood(itemBeingUsed.restorativePowers,
                                             player.maxHealth, player.health);

@@ -7,6 +7,4 @@ public abstract class Item {
     public String name = "itemname     ";
     public String useName = "itemname";
 
-    
-
 }
