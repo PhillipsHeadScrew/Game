@@ -2,10 +2,11 @@ package game;
 
 import game.Entity.Player;
 import game.Item.Consumables.Food.Food;
+import game.Item.Consumables.Potion.Potion;
+import game.Item.Empty;
 import game.Item.Item;
 import game.Spells.HealingSpells.MediumHealing;
 import game.Spells.HealingSpells.MinorHealing;
-import game.Item.Empty;
 
 import java.util.Scanner;
 
@@ -45,7 +46,7 @@ public class Main {
             System.out.println(equal); // printing bottom of screen
 
             Scanner in = new Scanner(System.in); // makes a scanner
-            String playerInput = in.next().toLowerCase() + in.nextLine(); // uses scanner
+            String playerInput = in.next().toLowerCase() + in.nextLine().toLowerCase() + in.nextLine().toLowerCase(); // uses scanner
 
             switch (location) { // changes what the player can do based on location
                 case "no_mans_land" -> { // no_mans_land is a testing area
@@ -74,7 +75,7 @@ public class Main {
                     switch (playerInput) {
                         case "back" -> location = previousLocation;
                         case "pocket", "items", "item" -> location = "items";
-                        case "stats" -> location = "stats";
+                        case "stats", "yourself", "stat" -> location = "stats";
                         case "notebook" -> location = "notebook";
                         case "spells" -> location = "spells";
                     }
@@ -89,34 +90,35 @@ public class Main {
                         case "item", "items", "pocket" -> {}
                         default -> {
                             for (int i = 0; i < 12; i++) {
-
                                 Item item = player.itemList.get(i);
 
-                                if (item.useName.equals(playerInput)) {
-                                    location = "use menu";
-                                    showItem = i;
-                                    switch (item.category) {
-                                        case CONSUMABLE -> {
-                                            switch (item.type) {
-                                                case FOOD -> itemUse = "food";
-                                                case POTIONS -> itemUse = "potions";
-                                                case RUNES -> itemUse = "runes";
+                                for (int h = 0; h < item.nameList.size(); h ++) {
+                                    if (item.nameList.get(h).equals(playerInput)) {
+                                        location = "use menu";
+                                        showItem = i;
+                                        switch (item.category) {
+                                            case CONSUMABLE -> {
+                                                switch (item.type) {
+                                                    case FOOD -> itemUse = "food";
+                                                    case POTIONS -> itemUse = "potions";
+                                                    case RUNES -> itemUse = "runes";
+                                                }
                                             }
-                                        }
-                                        case EQUIPMENT -> {
-                                            switch (item.type) {
-                                                case HELMET -> itemUse = "helmet";
-                                                case CHESTPLATE -> itemUse = "chestplate";
-                                                case WEAPON -> itemUse = "weapon";
-                                                case SHIELD -> itemUse = "shield";
-                                                case GREAVES -> itemUse = "greaves";
-                                                case BOOTS -> itemUse = "boots";
+                                            case EQUIPMENT -> {
+                                                switch (item.type) {
+                                                    case HELMET -> itemUse = "helmet";
+                                                    case CHESTPLATE -> itemUse = "chestplate";
+                                                    case WEAPON -> itemUse = "weapon";
+                                                    case SHIELD -> itemUse = "shield";
+                                                    case GREAVES -> itemUse = "greaves";
+                                                    case BOOTS -> itemUse = "boots";
+                                                }
                                             }
-                                        }
-                                        case KEY_ITEMS -> {
-                                            switch (item.type) {
-                                                case KEYS -> itemUse = "keys";
-                                                case TOOLS -> itemUse = "tools";
+                                            case KEY_ITEMS -> {
+                                                switch (item.type) {
+                                                    case KEYS -> itemUse = "keys";
+                                                    case TOOLS -> itemUse = "tools";
+                                                }
                                             }
                                         }
                                     }
@@ -152,6 +154,10 @@ public class Main {
                                     Food itemBeingUsed = (Food) player.itemList.get(showItem);
                                     player.health = itemBeingUsed.EatingFood(itemBeingUsed.restorativePowers,
                                             player.maxHealth, player.health);
+                                }
+                                case "potion" -> {
+                                    System.out.println("food test 2");
+                                    Potion itemBeingUsed = (Potion) player.itemList.get(showItem);
                                 }
                             }
                             player.itemList.set(showItem, emptySlot);
