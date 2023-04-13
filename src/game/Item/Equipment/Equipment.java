@@ -10,5 +10,6 @@ public class Equipment extends Item {
 
     public Equipment () {
         this.category = ItemsCategory.EQUIPMENT;
+        this.descriptionList = setEmptyDescriptionList(descriptionList);
     }
 }

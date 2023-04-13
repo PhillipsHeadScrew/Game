@@ -7,5 +7,6 @@ public class Consumables extends Item {
 
     public Consumables() {
         this.category = ItemsCategory.CONSUMABLE;
+        this.descriptionList = setEmptyDescriptionList(descriptionList);
     }
 }
