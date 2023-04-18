@@ -12,9 +12,11 @@ public abstract class Item {
 
     public List<String> descriptionList = new ArrayList<>();
 
+    public String emptyDefinition = "                                      ";
+
     public List<String> setEmptyDescriptionList(List<String> descriptionList) {
         for (int i = 0; i < 10; i ++) {
-            descriptionList.add(i,"                                      ");
+            descriptionList.add(i, emptyDefinition);
         }
         return descriptionList;
     }

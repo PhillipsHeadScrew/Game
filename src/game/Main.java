@@ -24,6 +24,7 @@ public class Main {
         Empty emptySlot = new Empty();
         int showItem = 0;
         String itemUse = "";
+        String[] descriptionOfUsedItem = {"", "", "", "", "", "", "", "", "", ""};
 
 
         while (running) { // turns location into an int
@@ -37,7 +38,7 @@ public class Main {
                 case "use menu" -> j = 6;
             }
 
-            String[][] game_screen = screen.createScreen(j, player, player.playerStatus, player.playerCurse);
+            String[][] game_screen = screen.createScreen(j, player, player.playerStatus, player.playerCurse, descriptionOfUsedItem);
             // makes the game screen object
             System.out.println(equal); // printing the top of the screen
             for (int i = 0; i < 18; i++) { // prints the content of the screen
@@ -147,10 +148,8 @@ public class Main {
                 case "use menu" -> { // the player has the option to use the item they chose or go back
                     switch (playerInput) {
                         case "use" -> {
-                            System.out.println("food test 1");
                             switch (itemUse) {
                                 case "food" -> {
-                                    System.out.println("food test 2");
                                     Food itemBeingUsed = (Food) player.itemList.get(showItem);
                                     player.health = itemBeingUsed.EatingFood(itemBeingUsed.restorativePowers,
                                             player.maxHealth, player.health);

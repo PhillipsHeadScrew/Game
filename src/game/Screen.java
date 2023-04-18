@@ -4,7 +4,7 @@ import game.Entity.Entity;
 import game.Entity.Player;
 
 public class Screen {
-    public String[][] createScreen(int j, Player p, Entity.status playerStatus, Entity.curse playerCurse) {// p = player
+    public String[][] createScreen(int j, Player p, Entity.status playerStatus, Entity.curse playerCurse, String[] itemDescription) {// p = player
         String space = "                                      ";//1
         String lines = "     ––––––––––        ––––––––––     ";//3
         String line = "     ––––––––––––––––––––––––––––     "; //4
@@ -89,7 +89,9 @@ public class Screen {
                         p.spellList.get(9).name, space, p.spellList.get(10).name + p.spellList.get(11).name,
                         space, space, line, back, line, space},
                 // 5 spells
-                {space, space, space, space, space, space, space, space, space, space, space, space, line,
+                {space, itemDescription[0], itemDescription[1], itemDescription[2], itemDescription[3],
+                        itemDescription[4], itemDescription[5], itemDescription[6], itemDescription[7],
+                        itemDescription[8], itemDescription[9], itemDescription[10], line,
                         "     |           Use            |     ", line, back, line, space},
                 // 6 use menu
         };
