@@ -7,7 +7,6 @@ public class SeveredFinger extends Food {
         this.nameList.add("severedfinger");
         this.nameList.add("severed finger");
         this.nameList.add("finger");
-        this.descriptionList.set(0, emptyDefinition);
 
     }
 }
