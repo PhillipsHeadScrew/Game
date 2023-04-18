@@ -25,6 +25,9 @@ public class Main {
         int showItem = 0;
         String itemUse = "";
         String[] descriptionOfUsedItem = {"", "", "", "", "", "", "", "", "", ""};
+        for (int k = 0; k < 10; k++) {
+            descriptionOfUsedItem[k] = (emptySlot.emptyDefinition);
+        }
 
 
         while (running) { // turns location into an int
@@ -47,7 +50,7 @@ public class Main {
             System.out.println(equal); // printing bottom of screen
 
             Scanner in = new Scanner(System.in); // makes a scanner
-            String playerInput = in.next().toLowerCase() + in.nextLine().toLowerCase() + in.nextLine().toLowerCase(); // uses scanner
+            String playerInput = in.next().toLowerCase() + in.nextLine().toLowerCase(); // uses scanner
 
             switch (location) { // changes what the player can do based on location
                 case "no_mans_land" -> { // no_mans_land is a testing area
@@ -148,6 +151,7 @@ public class Main {
                 case "use menu" -> { // the player has the option to use the item they chose or go back
                     switch (playerInput) {
                         case "use" -> {
+                            descriptionOfUsedItem = player.itemList.get(showItem).descriptionList;
                             switch (itemUse) {
                                 case "food" -> {
                                     Food itemBeingUsed = (Food) player.itemList.get(showItem);

@@ -91,7 +91,7 @@ public class Screen {
                 // 5 spells
                 {space, itemDescription[0], itemDescription[1], itemDescription[2], itemDescription[3],
                         itemDescription[4], itemDescription[5], itemDescription[6], itemDescription[7],
-                        itemDescription[8], itemDescription[9], itemDescription[10], line,
+                        itemDescription[8], itemDescription[9], space, line,
                         "     |           Use            |     ", line, back, line, space},
                 // 6 use menu
         };

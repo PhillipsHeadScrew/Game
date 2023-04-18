@@ -1,6 +1,7 @@
 package game.Entity;
 
 import game.Item.Consumables.Food.CannedBeans;
+import game.Item.Consumables.Potion.SmallBluePotion;
 import game.Item.Empty;
 import game.Spells.CustomSpells.EmptySpellSlot;
 
@@ -15,6 +16,7 @@ public class Player extends Entity {
         Empty emptySlot = new Empty();
         EmptySpellSlot emptySpellSlot = new EmptySpellSlot();
         CannedBeans cannedBeans = new CannedBeans();
+        SmallBluePotion smallBluePotion = new SmallBluePotion();
 
         this.health = 6;
         this.maxHealth = 10;
@@ -31,5 +33,6 @@ public class Player extends Entity {
             this.spellList.add(emptySpellSlot);
         }
         this.itemList.set(0, cannedBeans);
+        this.itemList.set(1, smallBluePotion);
     }
 }
