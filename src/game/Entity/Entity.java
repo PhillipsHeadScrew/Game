@@ -11,14 +11,11 @@ public class Entity {
 
     public int health;
     public int maxHealth;
-
     public int mana;
     public int maxMana;
-
     public int level;
     public int experience;
     public int maxExperience;
-
     public int defence;
     public int attack;
 
@@ -44,4 +41,30 @@ public class Entity {
         DISABLE_ATTACK,
         UNCURSED
     }
+    public String[] image = {"                                      ", "                                      ",
+            "                                      ", "                                      ",
+            "                                      ", "                                      ",
+            "                                      ", "                                      ",
+            "                                      "};
 }
+//"                 ____                 "
+//"                / o o\                "
+//"                 \  /                 "
+//"                /|––|\                "
+//"               / | || \               "
+//"              0  |__|  0              "
+//"                 |  |                 "
+//"                 |  |                 "
+//"              __/    \__              "
+
+//"              __–––––__               "
+//"             /  0   0  \              "
+//"            |           |             "
+//"             \_________/              "
+
+//"                ___                   "
+//"               / oo\                  "
+//"               \   /                  "
+//"               /|—|\                  "
+//"              0 |_| 0                 "
+//"              _/   \_                 "

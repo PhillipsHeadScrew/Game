@@ -15,8 +15,8 @@ public class CannedBeans extends Food {
         this.descriptionList[5] = "Pulse: A pulse is the edible seed from";
         this.descriptionList[6] = "a legume. This includes beans, peas,  ";
         this.descriptionList[7] = "lentils and chickpeas.                ";
-        this.descriptionList[8] = "Legume: A legume is any plant or part ";
-        this.descriptionList[9] = "of a plant in the Fabaceae family.    ";
+        this.descriptionList[8] = "Legume: A legume is any plant in the  ";
+        this.descriptionList[9] = "the Fabaceae family.                  ";
 
     }
 }

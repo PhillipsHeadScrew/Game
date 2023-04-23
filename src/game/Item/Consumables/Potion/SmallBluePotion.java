@@ -1,6 +1,6 @@
 package game.Item.Consumables.Potion;
 
-public class SmallBluePotion  extends Potion {
+public class SmallBluePotion  extends Potion.Blue {
     public SmallBluePotion() {
         this.restorativePowers = 10;
         this.name = "SmallBluePotion";

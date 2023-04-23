@@ -7,6 +7,6 @@ public class KeyItems extends Item {
 
     public KeyItems () {
         this.category = ItemsCategory.KEY_ITEMS;
-        this.descriptionList = setEmptyDescriptionList(descriptionList);
+
     }
 }

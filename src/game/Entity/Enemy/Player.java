@@ -1,22 +1,24 @@
-package game.Entity;
+package game.Entity.Enemy;
 
 import game.Item.Consumables.Food.CannedBeans;
 import game.Item.Consumables.Potion.SmallBluePotion;
 import game.Item.Empty;
+import game.Item.Equipment.Boots.DrMartens;
+import game.Item.Equipment.EmptyArmorSlot;
 import game.Spells.CustomSpells.EmptySpellSlot;
 
-public class Player extends Entity {
+public class Player extends Enemy {
 
     public status playerStatus = status.NORMAL;
     public curse playerCurse = curse.UNCURSED;
-
-
 
     public Player() {
         Empty emptySlot = new Empty();
         EmptySpellSlot emptySpellSlot = new EmptySpellSlot();
         CannedBeans cannedBeans = new CannedBeans();
         SmallBluePotion smallBluePotion = new SmallBluePotion();
+        DrMartens drMartens = new DrMartens();
+        EmptyArmorSlot emptyArmorSlot = new EmptyArmorSlot();
 
         this.health = 6;
         this.maxHealth = 10;
@@ -28,11 +30,18 @@ public class Player extends Entity {
         this.mana = 20;
         this.maxMana = 20;
         this.blankStat = 0;
+
         for (int i = 0; i < 12; i++) {
             this.itemList.add(emptySlot);
             this.spellList.add(emptySpellSlot);
         }
+
+        for (int i = 0; i < 7; i++) {
+            this.equippedList.add(emptyArmorSlot);
+        }
+
         this.itemList.set(0, cannedBeans);
         this.itemList.set(1, smallBluePotion);
+        this.itemList.set(2, drMartens);
     }
 }

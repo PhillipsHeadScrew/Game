@@ -5,9 +5,9 @@ import game.Spells.SpellType;
 
 public class HealingSpell extends Spell {
 
-    protected int restorativePower;
+    public int restorativePower;
 
-    int Heal(int playerHealth) {
+    int Heal() {
         return + restorativePower;
     }
 

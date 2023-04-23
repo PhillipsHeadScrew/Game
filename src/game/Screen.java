@@ -1,14 +1,15 @@
 package game;
 
-import game.Entity.Entity;
-import game.Entity.Player;
+import game.Entity.Enemy.Enemy;
+import game.Entity.Enemy.Player;
 
 public class Screen {
-    public String[][] createScreen(int j, Player p, Entity.status playerStatus, Entity.curse playerCurse, String[] itemDescription) {// p = player
+    public String[][] createScreen(int j, Player p, String[] itemDescription, int showItem, Enemy e) {// p = player e = enemy
         String space = "                                      ";//1
         String lines = "     ––––––––––        ––––––––––     ";//3
         String line = "     ––––––––––––––––––––––––––––     "; //4
         String back = "     |           Back           |     "; //5
+        String useMenuButton = " Use  ";
 
 
 
@@ -36,16 +37,23 @@ public class Screen {
 
         // this is to show the curse and status effect in the stats menu
 
+        switch (p.itemList.get(showItem).type) {
+            case FOOD -> useMenuButton = " Eat  ";
+            case POTIONS -> useMenuButton = "Drink ";
+            case RUNES -> useMenuButton = "Attach";
+            case BOOTS, CHESTPLATE, GREAVES, HELMET, SHIELD, WEAPON -> useMenuButton = "Equip ";
+        }
+
         String writtenPlayerStatus = "error           ";
         String writtenPlayerCurse = "error           ";
 
-        switch (playerStatus) {
+        switch (p.playerStatus) {
             case NORMAL -> writtenPlayerStatus = "Normal   ";
             case BURNED -> writtenPlayerStatus = "Burned   ";
             case STUNNED -> writtenPlayerStatus = "Stunned  ";
             case PARALYSED -> writtenPlayerStatus = "Paralyzed";
         }
-        switch (playerCurse) {
+        switch (p.playerCurse) {
             case UNCURSED -> writtenPlayerCurse = "Uncursed        ";
             case DISABLE_MAGIC -> writtenPlayerCurse = "Disabled Magic  ";
             case DISABLE_ATTACK -> writtenPlayerCurse = "Disabled Attack ";
@@ -92,8 +100,15 @@ public class Screen {
                 {space, itemDescription[0], itemDescription[1], itemDescription[2], itemDescription[3],
                         itemDescription[4], itemDescription[5], itemDescription[6], itemDescription[7],
                         itemDescription[8], itemDescription[9], space, line,
-                        "     |           Use            |     ", line, back, line, space},
+                        "     |          " + useMenuButton + "          |     ", line, back, line, space},
                 // 6 use menu
+                {space, space, e.image[0], e.image[1], e.image[2], e.image[3], e.image[4], e.image[5], e.image[6],
+                        e.image[7], e.image[8], space, space, space, space, space, space, space},
+                // 7 fight screen
+                {space, lines, "     | Punch  |        |Yourself|     ", lines, space, lines,
+                        "     | Pocket |        | Spells |     ", lines, space, space, space, space, space, space, line,
+                        back, line, space},
+                // 8 fight menu
         };
     }
 }

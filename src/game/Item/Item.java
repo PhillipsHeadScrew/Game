@@ -15,11 +15,5 @@ public abstract class Item {
     public String[] descriptionList = {emptyDefinition, emptyDefinition, emptyDefinition, emptyDefinition,
             emptyDefinition, emptyDefinition, emptyDefinition, emptyDefinition, emptyDefinition, emptyDefinition};
 
-    public List<String> setEmptyDescriptionList(List<String> descriptionList) {
-        for (int i = 0; i < 10; i ++) {
-            descriptionList.add(i, emptyDefinition);
-        }
-        return descriptionList;
-    }
 
 }

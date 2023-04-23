@@ -3,12 +3,7 @@ package game.Item.Equipment;
 import game.Item.ItemsType;
 
 public class Chestplate extends Equipment {
-    int power;
-
-    Chestplate(int power, int effect, String effect_type){
+    public Chestplate(){
         this.type = ItemsType.CHESTPLATE;
-        this.power = power;
-        this.effect = effect;
-        this.effect_type = effect_type;
     }
 }

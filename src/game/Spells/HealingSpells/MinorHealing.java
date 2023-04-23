@@ -3,7 +3,8 @@ package game.Spells.HealingSpells;
 public class MinorHealing extends HealingSpell {
 
     public MinorHealing() {
-        int restorativePowers = 10;
+        this.restorativePower = 10;
         this.name = " MinorHealing      ";
+        this.manaCost = 5;
     }
 }

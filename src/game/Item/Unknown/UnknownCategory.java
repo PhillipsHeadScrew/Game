@@ -7,6 +7,5 @@ public class UnknownCategory extends Item {
 
     public UnknownCategory() {
         this.category = ItemsCategory.UNKNOWN;
-        this.descriptionList = setEmptyDescriptionList(descriptionList);
     }
 }
