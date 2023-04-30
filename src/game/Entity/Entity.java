@@ -19,6 +19,9 @@ public class Entity {
     public int defence;
     public int attack;
 
+    public String name;
+    public int expYield;
+
     public int blankStat;
 
     public List<Spell> spellList = new ArrayList<>();

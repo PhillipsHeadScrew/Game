@@ -7,7 +7,7 @@ public class AttackSpell extends Spell {
 
     protected int destructivePower;
 
-    int Attack(int enemyHealth) {
+    public int Attack() {
         return - destructivePower;
     }
 

@@ -23,7 +23,6 @@ public class Equipment extends Item {
             case HELMET -> x = 0;
             case CHESTPLATE -> x = 2;
             case WEAPON -> x = 3;
-            case SHIELD -> x = 4;
             case GREAVES -> x = 5;
             case BOOTS -> x = 6;
         }

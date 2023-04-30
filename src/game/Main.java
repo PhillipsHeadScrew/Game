@@ -8,8 +8,12 @@ import game.Item.Consumables.Potion.Potion;
 import game.Item.Empty;
 import game.Item.Equipment.Equipment;
 import game.Item.Item;
+import game.Spells.AttackSpells.AttackSpell;
+import game.Spells.HealingSpells.HealingSpell;
 import game.Spells.HealingSpells.MediumHealing;
 import game.Spells.HealingSpells.MinorHealing;
+import game.Spells.Spell;
+import game.Spells.SupportSpells.FortifyStat;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -20,14 +24,16 @@ public class Main {
     public static void main(String[] args) {
         boolean running = true;
         String equal = "==========================================";
-        String location = "items";
-        int j = 2;
+        String location = "stats";
+        int j = 0;
         String previousLocation = "no_mans_land";
         Screen screen = new Screen();
         Player player = new Player();
+        System.out.println(player.level + "\n" + player.experience);
         Empty emptySlot = new Empty();
         Enemy enemy = new Enemy();
         int showItem = 0;
+        int showSpell;
         String itemUse = "";
         String[] descriptionOfUsedItem = {"", "", "", "", "", "", "", "", "", ""};
         for (int k = 0; k < 10; k++) {
@@ -47,6 +53,17 @@ public class Main {
                 case "fight screen" -> j = 7;
                 case "fight menu" -> j = 8;
             }
+            int[] levelingHelper = player.playerLevelUp();
+            player.health = levelingHelper[0];
+            player.maxHealth = levelingHelper[1];
+            player.attack = levelingHelper[2];
+            player.defence = levelingHelper[3];
+            player.mana = levelingHelper[4];
+            player.maxMana = levelingHelper[5];
+            System.out.println(player.level + "\n" + player.experience);
+            System.out.println(player.level + "\n" + player.experience);
+            player.experience = levelingHelper[7];
+            System.out.println(player.level + "\n" + player.experience);
             player.defence = 0; // this resets the defence before adding all the equipment power to player defence
             for (int i = 0; i < 7; i++) { // this adds the power of all equipment to the player defence
                 player.defence += player.equippedList.get(i).power;
@@ -86,6 +103,9 @@ public class Main {
                                     enemy = new Slime(2);
                                     location = "fight screen";
                                     previousLocation = "no_mans_land";
+                                }
+                                case "xp" -> {
+                                    player.experience += 100;
                                 }
                             }
                         }
@@ -153,6 +173,60 @@ public class Main {
                 case "spells" -> { // player can use some spells in the future
                     switch (playerInput) {
                         case "back", "bye" -> location = "menu";
+                        case "spells" -> {}
+                        default -> {
+                            for (int i = 0; i < 12; i++) {
+                            Spell spell = player.spellList.get(i);
+                                for (int h = 0; h < player.spellList.size(); h++) {
+                                    if (spell.nameList.get(h).equals(playerInput)) {
+                                        if (player.mana < player.spellList.get(i).manaCost) {
+                                            showSpell = i;
+                                            switch (spell.type) {
+                                                case SUPPORT -> {
+                                                    FortifyStat spellBeingUsed = (FortifyStat) player.spellList.get(i);
+                                                    boolean playerChoseNot = true;
+                                                    while (playerChoseNot) {
+                                                        System.out.println("""
+                                                            What stat do you choose to fortify?
+                                                            Defence
+                                                            Attack""");
+                                                        String playerInput2 = in.next().toLowerCase() +
+                                                                in.nextLine().toLowerCase();
+                                                        switch (playerInput2) {
+                                                            case "attack" -> {
+                                                                spellBeingUsed.supportSpell(player.attack);
+                                                                playerChoseNot = false;
+                                                            }
+                                                            case "defence" -> {
+                                                                spellBeingUsed.supportSpell(player.defence);
+                                                                playerChoseNot = false;
+                                                            }
+                                                            case "back" -> playerChoseNot = false;
+                                                            default -> System.out.println("either you wrote it wrong " +
+                                                                    "or wrote gibberish, if you are wondering how to " +
+                                                                    "cancel the spell: write 'back'");
+                                                        }
+                                                    }
+                                                }
+                                                case HEALING -> {
+                                                    HealingSpell spellBeingUsed = (HealingSpell)
+                                                            player.spellList.get(i);
+                                                    player.health = spellBeingUsed.Heal();
+                                                }
+                                                case ATTACK -> {
+                                                    AttackSpell spellBeingUsed = (AttackSpell)
+                                                            player.spellList.get(i);
+                                                    enemy.health = spellBeingUsed.Attack();
+                                                }
+                                            }
+                                            player.mana -= player.spellList.get(showSpell).manaCost;
+                                        }
+                                    } else  {
+                                        System.out.println("You do not have enough mana for this spell");
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
                 case "use menu" -> { // the player has the option to use the item they chose or go back
@@ -161,7 +235,7 @@ public class Main {
                         case FOOD -> useMenuButton = "eat";
                         case POTIONS -> useMenuButton = "drink";
                         case RUNES -> useMenuButton = "attach";
-                        case BOOTS, CHESTPLATE, GREAVES, HELMET, SHIELD, WEAPON -> useMenuButton = "equip";
+                        case BOOTS, CHESTPLATE, GREAVES, HELMET, WEAPON -> useMenuButton = "equip";
                         default -> useMenuButton = "use";
                     }
                     if (playerInput.equals(useMenuButton)) {
@@ -212,7 +286,7 @@ public class Main {
                         case "pocket", "items", "item" -> location = "items";
                         case "stats", "yourself", "stat" -> location = "stats";
                         case "spells" -> location = "spells";
-                        case "fight" -> {
+                        case "fight", "punch", "hit" -> {
                             location = "fight screen";
 
                             int damage = enemy.defence - player.attack;

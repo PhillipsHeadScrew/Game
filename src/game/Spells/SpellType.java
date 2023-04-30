@@ -4,5 +4,5 @@ public enum SpellType {
     HEALING,
     ATTACK,
     SUPPORT,
-    CUSTOM
+    EMPTY
 }

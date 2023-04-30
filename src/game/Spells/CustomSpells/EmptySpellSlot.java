@@ -1,8 +1,11 @@
 package game.Spells.CustomSpells;
 
-public class EmptySpellSlot extends CustomSpell {
+import game.Spells.Spell;
+import game.Spells.SpellType;
 
+public class EmptySpellSlot extends Spell {
     public EmptySpellSlot() {
+        this.type = SpellType.EMPTY;
         this.name = "                   ";
     }
 }

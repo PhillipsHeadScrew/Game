@@ -7,7 +7,7 @@ public class HealingSpell extends Spell {
 
     public int restorativePower;
 
-    int Heal() {
+    public int Heal() {
         return + restorativePower;
     }
 

@@ -3,6 +3,8 @@ package game;
 import game.Entity.Enemy.Enemy;
 import game.Entity.Enemy.Player;
 
+import static java.lang.Math.round;
+
 public class Screen {
     public String[][] createScreen(int j, Player p, String[] itemDescription, int showItem, Enemy e) {// p = player e = enemy
         String space = "                                      ";//1
@@ -16,7 +18,7 @@ public class Screen {
         String x;
         String[] stringSpace = {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "};
         String[] statList = {(String.valueOf(p.health) + 1 + p.maxHealth), String.valueOf(p.attack),
-                String.valueOf(p.defence), String.valueOf((p.experience + 1 + p.maxExperience)),
+                String.valueOf(p.defence), String.valueOf((p.experience)),
                 (String.valueOf(p.mana) + 1 + p.maxMana), String.valueOf(p.level)};
         // 0 health, 1 attack, 2 defence, 3 exp, 4 mana, 5 level
 
@@ -34,16 +36,28 @@ public class Screen {
                 }
             }
         }
+        // this shows the enemies stats in fight screen
+        String enemyHealthSpace = " ".repeat(8 - String.valueOf(e.health).length());
+        String enemyNameSpace = " ".repeat(8 - String.valueOf(e.name).length());
+        String enemyNameLevel = " ".repeat(2 - String.valueOf(e.level).length());
 
-        // this is to show the curse and status effect in the stats menu
+        int enemyHealthPercent = round(20 * e.health/e.maxHealth);
+        if (enemyHealthPercent < 0) {
+            enemyHealthPercent = 0;
+        }
+        String enemyHealthBar = "|".repeat(enemyHealthPercent);
+        String enemyHealthBarSpace = " ".repeat(20 - enemyHealthPercent);
+
+        // this shows player stats in
 
         switch (p.itemList.get(showItem).type) {
             case FOOD -> useMenuButton = " Eat  ";
             case POTIONS -> useMenuButton = "Drink ";
             case RUNES -> useMenuButton = "Attach";
-            case BOOTS, CHESTPLATE, GREAVES, HELMET, SHIELD, WEAPON -> useMenuButton = "Equip ";
+            case BOOTS, CHESTPLATE, GREAVES, HELMET, WEAPON -> useMenuButton = "Equip ";
         }
 
+        // this is to show the curse and status effect in the stats menu
         String writtenPlayerStatus = "error           ";
         String writtenPlayerCurse = "error           ";
 
@@ -81,8 +95,8 @@ public class Screen {
                         space, " " + p.itemList.get(10).name + stringSpace[10] + "  " + p.itemList.get(11).name +
                         stringSpace[11] + " ", space, space, line, back, line, space},
                 // 2 items
-                {space, " Level     " + p.level + stringSpace[5] + " " + p.experience + "/" + p.maxExperience +
-                        " Exp      " + stringSpace[3], space, " " + p.health + "/" + p.maxHealth + " Health    " +
+                {space, " Level     " + p.level + stringSpace[5] + " " + p.experience + "/10" +
+                        " Exp     " + stringSpace[3], space, " " + p.health + "/" + p.maxHealth + " Health    " +
                         stringSpace[0] + p.mana + "/" + p.maxMana + " ManaPoints " + stringSpace[4], space, " " +
                         p.attack + " Attack    " + stringSpace[1] + p.defence + " Defence    " + stringSpace[2], space,
                         " Status effect: " + writtenPlayerStatus + "             ", space, " Curse: " +
@@ -102,8 +116,10 @@ public class Screen {
                         itemDescription[8], itemDescription[9], space, line,
                         "     |          " + useMenuButton + "          |     ", line, back, line, space},
                 // 6 use menu
-                {space, space, e.image[0], e.image[1], e.image[2], e.image[3], e.image[4], e.image[5], e.image[6],
-                        e.image[7], e.image[8], space, space, space, space, space, space, space},
+                {" " + e.health + "/" + e.maxHealth + enemyHealthSpace + " (" + enemyHealthBar + enemyHealthBarSpace +
+                        ")    ", " " + e.name + enemyNameSpace + " Level " + e.level + enemyNameLevel +
+                        "                    ", e.image[0], e.image[1], e.image[2], e.image[3], e.image[4], e.image[5],
+                        e.image[6], e.image[7], e.image[8], space, space, space, space, space, space, space},
                 // 7 fight screen
                 {space, lines, "     | Punch  |        |Yourself|     ", lines, space, lines,
                         "     | Pocket |        | Spells |     ", lines, space, space, space, space, space, space, line,

@@ -5,11 +5,13 @@ import java.util.List;
 
 public abstract class Spell {
 
-    protected int manaCost;
+    public int manaCost;
 
     public String name = "                   ";
 
     public List<String> nameList = new ArrayList<>();
 
-    protected SpellType type;
+    public List<String> descriptionList = new ArrayList<>();
+
+    public SpellType type;
 }
