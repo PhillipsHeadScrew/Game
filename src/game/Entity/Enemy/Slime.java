@@ -4,7 +4,7 @@ public class Slime extends Enemy {
     public Slime(int level) {
         this.level = level;
         this.experience = 0;
-        this.levelUp = new int[][]{{3, 3, 3, 4, 10, 10, 1, this.experience}};
+        this.levelUp = new int[][]{{3, 3, 3, 4, 10, 10, 1, this.experience}, {3, 3, 3, 4, 10, 10, 1, this.experience}};
         int[] levelingHelper = levelingUp();
 
         this.health = levelingHelper[0];

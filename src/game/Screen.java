@@ -37,7 +37,8 @@ public class Screen {
             }
         }
         // this shows the enemies stats in fight screen
-        String enemyHealthSpace = " ".repeat(8 - String.valueOf(e.health).length());
+        String enemyHealthSpace = " ".repeat(8 - String.valueOf(e.health).length() -
+                String.valueOf(e.maxHealth).length());
         String enemyNameSpace = " ".repeat(8 - String.valueOf(e.name).length());
         String enemyNameLevel = " ".repeat(2 - String.valueOf(e.level).length());
 
@@ -48,7 +49,30 @@ public class Screen {
         String enemyHealthBar = "|".repeat(enemyHealthPercent);
         String enemyHealthBarSpace = " ".repeat(20 - enemyHealthPercent);
 
-        // this shows player stats in
+        // this shows the player stats in fight screen
+        String playerHealthSpace = " ".repeat(8 - String.valueOf(p.health).length() -
+                String.valueOf(p.maxHealth).length());
+
+
+        int playerHealthPercent = round(20 * p.health/p.maxHealth);
+        if (playerHealthPercent < 0) {
+            playerHealthPercent = 0;
+        }
+        String playerHealthBar = "|".repeat(playerHealthPercent);
+        String playerHealthBarSpace = " ".repeat(20 - playerHealthPercent);
+
+        // shows mana of player in fight screen
+
+        String playerManaSpace = " ".repeat(8 - String.valueOf(p.mana).length() -
+                String.valueOf(p.maxMana).length());
+
+
+        int playerManaPercent = round(20 * p.mana/p.maxMana);
+        if (playerManaPercent < 0) {
+            playerManaPercent = 0;
+        }
+        String playerManaBar = "|".repeat(playerManaPercent);
+        String playerManaBarSpace = " ".repeat(20 - playerManaPercent);
 
         switch (p.itemList.get(showItem).type) {
             case FOOD -> useMenuButton = " Eat  ";
@@ -116,15 +140,60 @@ public class Screen {
                         itemDescription[8], itemDescription[9], space, line,
                         "     |          " + useMenuButton + "          |     ", line, back, line, space},
                 // 6 use menu
-                {" " + e.health + "/" + e.maxHealth + enemyHealthSpace + " (" + enemyHealthBar + enemyHealthBarSpace +
-                        ")    ", " " + e.name + enemyNameSpace + " Level " + e.level + enemyNameLevel +
-                        "                    ", e.image[0], e.image[1], e.image[2], e.image[3], e.image[4], e.image[5],
-                        e.image[6], e.image[7], e.image[8], space, space, space, space, space, space, space},
+                {" " + e.health + "/" + e.maxHealth + " Hp" + enemyHealthSpace + " (" + enemyHealthBar +
+                        enemyHealthBarSpace + ")  ", " " + e.name + enemyNameSpace + " Level " + e.level +
+                        enemyNameLevel + "                    ", e.image[0], e.image[1], e.image[2], e.image[3],
+                        e.image[4], e.image[5], e.image[6], e.image[7], e.image[8], space, space, space, space,
+                        " Player                               ", " " + p.health + "/" + p.maxHealth + " Hp" +
+                        playerHealthSpace + " (" + playerHealthBar + playerHealthBarSpace + ")  ", " " + p.mana + "/" +
+                        p.maxMana + " Mp" + playerManaSpace + " (" + playerManaBar + playerManaBarSpace + ")  "},
                 // 7 fight screen
                 {space, lines, "     | Punch  |        |Yourself|     ", lines, space, lines,
                         "     | Pocket |        | Spells |     ", lines, space, space, space, space, space, space, line,
                         back, line, space},
                 // 8 fight menu
+                {"\\                                    /", " \\                                  / ",
+                        "  \\                                /  ", "   \\______________________________/   ",
+                        "   |           _________          |   ", "   |         /           \\        |   ",
+                        "   |        |             |       |   ", "   |        |             |       |   ",
+                        "   |        |             |       |   ", "   |        |          () |       |   ",
+                        "   |        |             |       |   ", "   |        |             |       |   ",
+                        "   |        |             |       |   ", "   |______________________________|   ",
+                        "   /                              \\   ", "  /                                \\  ",
+                        " /                                  \\ ", "/                                    \\",},
+                // 9 first room
+                {space, space, space, space, space, space, space, space, space, space, space, space, space, space,
+                        space, space, space, space},
+                // 10 second room
+                {"To enter the menu you have to write:  ", "menu. When in the menu you can        ",
+                        "interact with some thing by writing   ", "its name. For example if an item has  ",
+                        "the name: egg. Then if you write the  ", "name then you get to a use menu. In   ",
+                        "these menus you will get a button that", "says something like eat or use, by    ",
+                        "writing what is in the button you can ", "use the item. You can interact with   ",
+                        "other buttons the same way. You can   ", "with stuff in the environment through ",
+                        "similar methods. Does your host tell  ", "tell you that there is a shoe in the  ",
+                        "room then you could write shoe and    ", "then you can go to that shoe and      ",
+                        "interact with that shoe.              ", "To leave this note write: back        "},
+                // 11 tutorial note
+
         };
     }
 }
+//"\                                    /",
+//" \                                  / ",
+//"  \                                /  ",
+//"   \______________________________/   ",
+//"   |           _________          |   ",
+//"   |         /           \        |   ",
+//"   |        |             |       |   ",
+//"   |        |             |       |   ",
+//"   |        |             |       |   ",
+//"   |        |          () |       |   ",
+//"   |        |             |       |   ",
+//"   |        |             |       |   ",
+//"   |        |             |       |   ",
+//"   |______________________________|   ",
+//"   /                              \   ",
+//"  /                                \  ",
+//" /                                  \ ",
+//"/                                    \",

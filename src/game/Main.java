@@ -21,15 +21,15 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         boolean running = true;
         String equal = "==========================================";
-        String location = "stats";
-        int j = 0;
+        String location = "first room";
+        String playerInput = "test";
+        int j = 9;
         String previousLocation = "no_mans_land";
         Screen screen = new Screen();
         Player player = new Player();
-        System.out.println(player.level + "\n" + player.experience);
         Empty emptySlot = new Empty();
         Enemy enemy = new Enemy();
         int showItem = 0;
@@ -39,6 +39,7 @@ public class Main {
         for (int k = 0; k < 10; k++) {
             descriptionOfUsedItem[k] = (emptySlot.emptyDefinition);
         }
+        boolean[] hasNotPlayerBeenThere = {true, true, true, true, true, true, true, true, true, true, true, true};
 
 
         while (running) { // turns location into an int
@@ -52,18 +53,17 @@ public class Main {
                 case "use menu" -> j = 6;
                 case "fight screen" -> j = 7;
                 case "fight menu" -> j = 8;
+                case "first room" -> j = 9;
+                case "second room" -> j = 10;
+                case "tutorial note" -> j = 11;
             }
             int[] levelingHelper = player.playerLevelUp();
             player.health = levelingHelper[0];
             player.maxHealth = levelingHelper[1];
             player.attack = levelingHelper[2];
-            player.defence = levelingHelper[3];
             player.mana = levelingHelper[4];
             player.maxMana = levelingHelper[5];
-            System.out.println(player.level + "\n" + player.experience);
-            System.out.println(player.level + "\n" + player.experience);
             player.experience = levelingHelper[7];
-            System.out.println(player.level + "\n" + player.experience);
             player.defence = 0; // this resets the defence before adding all the equipment power to player defence
             for (int i = 0; i < 7; i++) { // this adds the power of all equipment to the player defence
                 player.defence += player.equippedList.get(i).power;
@@ -76,9 +76,10 @@ public class Main {
                 System.out.println(" |" + game_screen[j][i] + "|");
             }
             System.out.println(equal); // printing bottom of screen
-
             Scanner in = new Scanner(System.in); // makes a scanner
-            String playerInput = in.next().toLowerCase() + in.nextLine().toLowerCase(); // uses scanner
+            if (!hasNotPlayerBeenThere[9]) {
+                playerInput = in.next().toLowerCase() + in.nextLine().toLowerCase();
+            } // uses scanner
 
             switch (location) { // changes what the player can do based on location
                 case "no_mans_land" -> { // no_mans_land is a testing area
@@ -104,9 +105,7 @@ public class Main {
                                     location = "fight screen";
                                     previousLocation = "no_mans_land";
                                 }
-                                case "xp" -> {
-                                    player.experience += 100;
-                                }
+                                case "xp" -> player.experience += 100;
                             }
                         }
                     }
@@ -309,6 +308,44 @@ public class Main {
                                 running = false;
                             }
                         }
+                    }
+                }
+                case "first room" -> {
+                    if (hasNotPlayerBeenThere[j]) {
+                        System.out.println("Hey");
+                        Thread.sleep(400);
+                        System.out.println("Hey you! Who are you!");
+                        Thread.sleep(2000);
+                        System.out.println("Why are you in my head? How do I know you are in my head?");
+                        Thread.sleep(4000);
+                        System.out.println("Where are we? No matter, we need to get out.");
+                        Thread.sleep(3500);
+                        System.out.println("I have been awake longer than you.");
+                        Thread.sleep(2500);
+                        System.out.println("""
+                                I have searched the room and I found some clothes, a liquid in a bottle, a weapon and a
+                                note in a language I can't read. But I can't leave because I'm wounded. *groan*
+                                """);
+                        Thread.sleep(10000);
+                        System.out.println("I tried to explore, but i got hurt when fighting some kind of skeleton.\n" +
+                                "At least I won.");
+                        Thread.sleep(4000);
+                        System.out.println("Let me show you.");
+                        Thread.sleep(2000);
+                        hasNotPlayerBeenThere[j] = false;
+                        location = "tutorial note";
+                    }
+                    switch (playerInput) {
+                         case "go through door" -> location = "second room";
+                         case "menu" -> {
+                             location = "menu";
+                             previousLocation = "first room";
+                         }
+                    }
+                }
+                case "tutorial note" -> {
+                    if (playerInput.equals("back")) {
+                        location = "first room";
                     }
                 }
             }

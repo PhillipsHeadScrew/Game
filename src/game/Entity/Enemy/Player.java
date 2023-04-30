@@ -23,7 +23,6 @@ public class Player extends Enemy {
         this.experience = 0;
         this.maxExperience = 10;
         this.level = 1;
-        System.out.println(level + "\n" + experience);
         this.levelUp = new int[][]{{10, 10, 4, 0, 20, 20, 1, this.experience},
                 {13, 13, 5, 0, this.mana, 20, 2, this.experience}, {16, 16, 6, 0, 25, 25, 3, this.experience},
                 {19, 19, 7, 0, this.mana, 25, 4, this.experience}, {22, 22, 8, 0, 30, 30, 5, this.experience},
@@ -31,7 +30,6 @@ public class Player extends Enemy {
                 {31, 31, 11, 0, this.mana, 40, 8, this.experience}, {34, 34, 12, 0, 50, 50, 9, this.experience},
                 {37, 37, 13, 0, this.mana, 50, 10, this.experience}};
         int[] levelingHelper = levelingUp();
-        System.out.println(level + "\n" + experience);
 
         this.health = levelingHelper[0];
         this.maxHealth = levelingHelper[1];
@@ -39,11 +37,8 @@ public class Player extends Enemy {
         this.defence = levelingHelper[3];
         this.mana = levelingHelper[4];
         this.maxMana = levelingHelper[5];
-        System.out.println(level + "\n" + experience);
         this.level = levelingHelper[6];
-        System.out.println(level + "\n" + experience);
         this.experience = levelingHelper[7];
-        System.out.println(level + "\n" + experience);
 
 
 
