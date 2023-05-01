@@ -1,5 +1,6 @@
-package game.Item.Equipment;
+package game.Item.Equipment.Greaves;
 
+import game.Item.Equipment.Equipment;
 import game.Item.ItemsType;
 
 public class Greaves extends Equipment {

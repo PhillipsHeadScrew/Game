@@ -1,9 +1,8 @@
 package game.Entity.Enemy;
 
 import game.Item.Consumables.Food.CannedBeans;
-import game.Item.Consumables.Potion.BluePotion;
+import game.Item.Consumables.Potion.SmallRedPotion;
 import game.Item.Empty;
-import game.Item.Equipment.Boots.DrMartens;
 import game.Item.Equipment.EmptyArmorSlot;
 import game.Spells.CustomSpells.EmptySpellSlot;
 
@@ -16,9 +15,9 @@ public class Player extends Enemy {
         Empty emptySlot = new Empty();
         EmptySpellSlot emptySpellSlot = new EmptySpellSlot();
         CannedBeans cannedBeans = new CannedBeans();
-        BluePotion smallBluePotion = new BluePotion();
-        DrMartens drMartens = new DrMartens();
         EmptyArmorSlot emptyArmorSlot = new EmptyArmorSlot();
+        SmallRedPotion smallRedPotion = new SmallRedPotion();
+
 
         this.experience = 0;
         this.maxExperience = 10;
@@ -52,8 +51,8 @@ public class Player extends Enemy {
         }
 
         this.itemList.set(0, cannedBeans);
-        this.itemList.set(1, smallBluePotion);
-        this.itemList.set(2, drMartens);
+        this.itemList.set(1, smallRedPotion);
+
     }
     public int[] playerLevelUp() {
         return levelingUp();

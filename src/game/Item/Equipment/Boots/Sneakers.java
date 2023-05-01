@@ -5,7 +5,7 @@ public class Sneakers extends Boots {
         this.power = 2;
         this.effect_type = "none";
         this.effect = 0;
-        this.name = "Sneakers";
+        this.name = " Sneakers          ";
         this.nameList.add("sneakers");
     }
 }

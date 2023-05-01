@@ -107,7 +107,7 @@ public class Screen {
                 //0 no_mans_land
                 {space, lines, "     | Pocket |        |Yourself|     ", lines, space, lines,
                         "     |Notebook|        | Spells |     ", lines, space, lines,
-                        "     |Equipped|        |KeyItems|     ", lines, space, space, line,
+                        "     |Equipped|                       ", lines, space, space, line,
                         back, line, space},
                 // 1 menu
                 {space, " " + p.itemList.get(0).name + stringSpace[0] + "  " + p.itemList.get(1).name + stringSpace[1] +
@@ -175,6 +175,12 @@ public class Screen {
                         "room then you could write shoe and    ", "then you can go to that shoe and      ",
                         "interact with that shoe.              ", "To leave this note write: back        "},
                 // 11 tutorial note
+                {space, " Head wear         " + p.equippedList.get(0).name, " Chestplate        " +
+                        p.equippedList.get(1).name, " Greaves           " + p.equippedList.get(2).name,
+                        " Boots             " + p.equippedList.get(3).name, " Weapon            " +
+                        p.equippedList.get(4).name, space, space, space, space, space, space, space, space, space,
+                        space, space, space},
+                // 12 equipped
 
         };
     }

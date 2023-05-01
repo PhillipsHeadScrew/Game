@@ -5,7 +5,6 @@ public enum ItemsType {
     POTIONS,
     RUNES,
     KEYS,
-    TOOLS,
     WEAPON,
     HELMET,
     CHESTPLATE,

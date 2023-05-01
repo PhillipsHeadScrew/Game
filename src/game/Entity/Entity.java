@@ -26,6 +26,7 @@ public class Entity {
 
     public List<Spell> spellList = new ArrayList<>();
     public List<Item> itemList = new ArrayList<>();
+    // healmet,
     public List<Equipment> equippedList = new ArrayList<>();
 
     public enum status {

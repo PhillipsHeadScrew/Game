@@ -17,16 +17,16 @@ public class Equipment extends Item {
     }
 
     public ArrayList<Equipment> Equip(ArrayList<Equipment> equipmentList, Equipment armorPiece) {
-        int x = 7;
+        int x = 5;
 
         switch (type) {
             case HELMET -> x = 0;
-            case CHESTPLATE -> x = 2;
-            case WEAPON -> x = 3;
-            case GREAVES -> x = 5;
-            case BOOTS -> x = 6;
+            case CHESTPLATE -> x = 1;
+            case GREAVES -> x = 2;
+            case BOOTS -> x = 3;
+            case WEAPON -> x = 4;
         }
-        if (x == 7) {
+        if (x == 5) {
             System.out.println("error, x = " + x);
         }
         else {

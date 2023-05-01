@@ -2,12 +2,16 @@ package game;
 
 import game.Entity.Enemy.Enemy;
 import game.Entity.Enemy.Player;
+import game.Entity.Enemy.Skeleton;
 import game.Entity.Enemy.Slime;
 import game.Item.Consumables.Food.Food;
 import game.Item.Consumables.Potion.Potion;
 import game.Item.Empty;
 import game.Item.Equipment.Equipment;
 import game.Item.Item;
+import game.Item.ItemsType;
+import game.Item.KeyItems.BlueKey;
+import game.Item.KeyItems.KeyItems;
 import game.Spells.AttackSpells.AttackSpell;
 import game.Spells.HealingSpells.HealingSpell;
 import game.Spells.HealingSpells.MediumHealing;
@@ -32,6 +36,7 @@ public class Main {
         Player player = new Player();
         Empty emptySlot = new Empty();
         Enemy enemy = new Enemy();
+        BlueKey blueKey = new BlueKey();
         int showItem = 0;
         int showSpell;
         String itemUse = "";
@@ -40,6 +45,7 @@ public class Main {
             descriptionOfUsedItem[k] = (emptySlot.emptyDefinition);
         }
         boolean[] hasNotPlayerBeenThere = {true, true, true, true, true, true, true, true, true, true, true, true};
+        boolean[] canDoorNotBeOpened = {true, true, true}; //west, east, north
 
 
         while (running) { // turns location into an int
@@ -56,6 +62,7 @@ public class Main {
                 case "first room" -> j = 9;
                 case "second room" -> j = 10;
                 case "tutorial note" -> j = 11;
+
             }
             int[] levelingHelper = player.playerLevelUp();
             player.health = levelingHelper[0];
@@ -65,7 +72,7 @@ public class Main {
             player.maxMana = levelingHelper[5];
             player.experience = levelingHelper[7];
             player.defence = 0; // this resets the defence before adding all the equipment power to player defence
-            for (int i = 0; i < 7; i++) { // this adds the power of all equipment to the player defence
+            for (int i = 0; i < 3; i++) { // this adds the power of all equipment to the player defence
                 player.defence += player.equippedList.get(i).power;
             }
 
@@ -77,7 +84,11 @@ public class Main {
             }
             System.out.println(equal); // printing bottom of screen
             Scanner in = new Scanner(System.in); // makes a scanner
-            if (!hasNotPlayerBeenThere[9]) {
+            if ((!hasNotPlayerBeenThere[9] &&
+                    location.equals("tutorial note")) ||
+                    (!hasNotPlayerBeenThere[10] &&
+                    location.equals("second room")) || (!hasNotPlayerBeenThere[9] &&
+                    location.equals("first room")) || location.equals("fight screen") || location.equals("fight menu")) {
                 playerInput = in.next().toLowerCase() + in.nextLine().toLowerCase();
             } // uses scanner
 
@@ -126,8 +137,7 @@ public class Main {
                 }
                 case "items" -> { // player can look at the items they have and use one if they want
                     switch (playerInput) {
-                        case "item", "items", "pocket", "             " -> {
-                        }
+                        case "item", "items", "pocket", "             " -> {}
                         default -> {
                             for (int i = 0; i < 12; i++) {
                                 Item item = player.itemList.get(i);
@@ -148,9 +158,8 @@ public class Main {
                                             case EQUIPMENT -> itemUse = "equipment";
 
                                             case KEY_ITEMS -> {
-                                                switch (item.type) {
-                                                    case KEYS -> itemUse = "keys";
-                                                    case TOOLS -> itemUse = "tools";
+                                                if (item.type == ItemsType.KEYS) {
+                                                    itemUse = "keys";
                                                 }
                                             }
                                         }
@@ -265,6 +274,21 @@ public class Main {
                                 Equipment itemBeingUsed = (Equipment) player.itemList.get(showItem);
                                 player.equippedList = itemBeingUsed.Equip((ArrayList<Equipment>) player.equippedList,
                                         itemBeingUsed);
+                                //x = x ^ y ^ (y = x);
+                            }
+                            case "keys" -> {
+                                KeyItems itemBeingUsed = (KeyItems) player.itemList.get(showItem);
+                                switch (itemBeingUsed.whereIsUsed) {
+                                    case "west door" -> {
+                                        canDoorNotBeOpened[0] = false;
+                                    }
+                                    case "east door" -> {
+                                        canDoorNotBeOpened[1] = false;
+                                    }
+                                    case "north door" -> {
+                                        canDoorNotBeOpened[2] = false;
+                                    }
+                                }
                             }
                         }
                         player.itemList.set(showItem, emptySlot);
@@ -296,6 +320,8 @@ public class Main {
                             if (enemy.health < 1) {
                                 player.experience += 1;
                                 location = previousLocation;
+                                System.out.println("You won!");
+                                running = false;
                             }
 
                             damage = player.defence - enemy.attack;
@@ -311,7 +337,7 @@ public class Main {
                     }
                 }
                 case "first room" -> {
-                    if (hasNotPlayerBeenThere[j]) {
+                    if (hasNotPlayerBeenThere[9]) {
                         System.out.println("Hey");
                         Thread.sleep(400);
                         System.out.println("Hey you! Who are you!");
@@ -332,7 +358,7 @@ public class Main {
                         Thread.sleep(4000);
                         System.out.println("Let me show you.");
                         Thread.sleep(2000);
-                        hasNotPlayerBeenThere[j] = false;
+                        hasNotPlayerBeenThere[9] = false;
                         location = "tutorial note";
                     }
                     switch (playerInput) {
@@ -341,6 +367,14 @@ public class Main {
                              location = "menu";
                              previousLocation = "first room";
                          }
+                    }
+                }
+                case "second room" -> {
+                    if (hasNotPlayerBeenThere[10]) {
+                        enemy = new Skeleton(3);
+                        location = "fight screen";
+                        previousLocation = "second room";
+                        hasNotPlayerBeenThere[10] = false;
                     }
                 }
                 case "tutorial note" -> {
